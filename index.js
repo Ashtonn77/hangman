@@ -1,11 +1,11 @@
 const wordEl = document.getElementById("word");
 const wrongLettersEl = document.getElementById("wrong-letters");
-const playAgainBtn = document.getElementById("play-again");
+const playAgainBtn = document.getElementById("play-button");
 const popUp = document.getElementById("popup-container");
 const notification = document.getElementById("notification-container");
 const finalMsg = document.getElementById("final-message");
 
-const figureParts = document.querySelectorAll("figure-part");
+let figureParts = document.querySelectorAll(".figure-part");
 
 /*use an api instead of this simple array*/
 const words = ["professional", "engineer", "wizard", "serendipity"];
@@ -39,7 +39,28 @@ function displayWord() {
 
 //update wrong leters
 function updateWrongLettersEl() {
-  console.log("Update wrong");
+  //display wrong leters
+  wrongLettersEl.innerHTML = `
+  ${wrongLetters.length > 0 ? "<p>Wrong</p>" : ""}
+  ${wrongLetters.map((letter) => `<span>${letter}</span>`)}
+  `;
+
+  //display body
+  figureParts.forEach((part, index) => {
+    const errors = wrongLetters.length;
+
+    if (index < errors) {
+      part.style.display = "block";
+    } else {
+      part.style.display = "none";
+    }
+  });
+
+  //check if lost
+  if (wrongLetters.length === figureParts.length) {
+    finalMsg.innerText = "Sorry...you lost!!!";
+    popUp.style.display = "flex";
+  }
 }
 
 //show pop up notification
@@ -73,6 +94,20 @@ window.addEventListener("keydown", (e) => {
       }
     }
   }
+});
+
+playAgainBtn.addEventListener("click", () => {
+  //empty arrays
+  correctLetters.splice(0);
+  wrongLetters.splice(0);
+
+  selectedWord = words[Math.floor(Math.random() * words.length)];
+
+  displayWord();
+
+  updateWrongLettersEl();
+
+  popUp.style.display = "none";
 });
 
 displayWord();
