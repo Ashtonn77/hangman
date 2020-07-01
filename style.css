@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: #3c6382;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  overflow: hidden;
+  font-family: "Shadows Into Light", cursive;
+  letter-spacing: 1.5px;
+}
+
+h1 {
+  margin: 20px 0 0;
+}
+
+.figure-container {
+  fill: transparent;
+  stroke: #fff;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.figure-part {
+  display: none;
+}
+
+.game-container {
+  position: relative;
+  padding: 20px 30px;
+  margin: auto;
+  height: 350px;
+  width: 400px;
+}
+
+.wrong-letters-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.wrong-letters-container p {
+  margin: 0 0 5px;
+}
+
+.wrong-letters-container span {
+  font-size: 24px;
+}
+
+.word {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.letter {
+  border-bottom: 3px solid #0a3d62;
+  display: inline-flex;
+  font-size: 25px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3px;
+  height: 40px;
+  width: 20px;
+  text-transform: uppercase;
+}
+
+.popup-container {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  background: #38ada9;
+  border-radius: 5px;
+  box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.popup button {
+  cursor: pointer;
+  font-family: "Shadows Into Light", cursive;
+  letter-spacing: 1.5px;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 5px;
+  border: 0;
+  outline: none;
+  color: #38ada9;
+  padding: 12px 20px;
+}
+
+.popup button:hover {
+  transform: scale(1.01);
+}
+
+.popup button:active {
+  transform: scale(0.98);
+}
+
+.popup button:focus {
+  outline: none;
+}
+
+.notification-container {
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  padding: 15px 20px;
+  border-radius: 10px 10px 0 0;
+  bottom: -50px;
+  transition: all 0.5s ease;
+}
+
+/*so the popup doesnt stick out the bottom*/
+.notification-container p {
+  margin: 0;
+}
+
+.notification-container.show {
+  transform: translateY(-50px);
+}
